@@ -1,0 +1,26 @@
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertarComprobanteDetalle`(
+    IN via_nro CHAR(6),
+    IN numeroAsiento VARCHAR(40),
+    IN tipoPasajero CHAR(1),
+    IN pagoxviaje DECIMAL(8,1)
+)
+BEGIN
+    DECLARE nroBoleta VARCHAR(6);
+    DECLARE pagoAsiento DECIMAL(8,1); -- Declarar variable para pagoAsiento
+
+    -- Obtener el último BOL_NRO generado en la tabla comprobante
+    SELECT BOL_NRO INTO nroBoleta FROM comprobante ORDER BY BOL_NRO DESC LIMIT 1;
+
+    CASE tipoPasajero
+        WHEN 'E' THEN SET pagoAsiento = pagoxviaje * 0.7; -- Precio para estudiantes
+        WHEN 'A' THEN SET pagoAsiento = pagoxviaje * 1.0; -- Precio para adultos
+        WHEN 'N' THEN SET pagoAsiento = pagoxviaje * 0.5; -- Precio para niños
+        ELSE SET pagoAsiento = 0; -- Otros casos
+    END CASE;
+
+    -- Insertar en la tabla comprobante_detalle con el BOL_NRO obtenido
+    INSERT INTO Comprobante_detalle (BOL_NRO, VIA_NRO, nro_asi, tipo, pago)
+    VALUES (nroBoleta, via_nro, numeroAsiento, tipoPasajero, pagoAsiento);
+END$$
+DELIMITER ;

@@ -1,0 +1,27 @@
+DELIMITER //
+
+CREATE PROCEDURE registrarUsuario(
+    IN p_nombre VARCHAR(100),
+    IN p_apellido VARCHAR(100),
+    IN p_usuario VARCHAR(20),
+    IN p_contrasena VARCHAR(255)
+)
+BEGIN
+    DECLARE v_usuario_existente INT;
+
+    -- Verificar si el usuario ya existe en la base de datos
+    SELECT COUNT(*) INTO v_usuario_existente
+    FROM usuarios
+    WHERE usuario = p_usuario;
+
+    -- Si el usuario no existe, proceder con el registro
+    IF v_usuario_existente = 0 THEN
+        INSERT INTO usuarios (nombre, apellido, usuario, clave)
+        VALUES (p_nombre, p_apellido, p_usuario, CAST(AES_ENCRYPT(p_contrasena, 'xyz24') AS CHAR) COLLATE utf8mb4_general_ci);
+        SELECT 1 AS resultado; -- Registro exitoso
+    ELSE
+        SELECT 0 AS resultado; -- Usuario ya existe
+    END IF;
+END //
+
+DELIMITER ;

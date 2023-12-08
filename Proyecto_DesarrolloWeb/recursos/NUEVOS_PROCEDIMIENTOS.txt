@@ -1,0 +1,39 @@
+-- listar cantidad pasajeros por ruta
+use bdviajes;
+drop procedure if exists spPasRuta;
+create procedure spPasRuta()
+select distinct rutcod as codigo, rutnom as ruta, 
+(select count(*) from comprobante_detalle as cd 
+inner join comprobante as c on cd.bol_nro=c.bol_nro
+inner join viaje as v on c.via_nro=v.vianro
+inner join ruta as r on v.rutcod=r.rutcod where r.rutcod=codigo) as total 
+from ruta order by ruta;
+
+
+-- listar cantidad de cada tipo pasajero en un viaje determinado
+use bdviajes;
+drop procedure if exists spTipoViaje;
+create procedure spTipoViaje(numVia int)
+select distinct (select count(*) from comprobante_detalle where tipo='E' and via_nro=numVia) as estudiantes,
+(select count(*) from comprobante_detalle where tipo='A' and via_nro=numVia) as adultos,
+(select count(*) from comprobante_detalle where tipo='N' and via_nro=numVia) as niños
+from comprobante_detalle where via_nro=numVia;
+
+call spTipoViaje('100001');
+
+-- crear nuevo numero de viaje
+use bdviajes;
+drop procedure if exists spNuevoViaje;
+create procedure spNuevoViaje()
+select max(convert(vianro,SIGNED))+1 as NuevoViaje from viaje;
+
+call spNuevoViaje();
+
+use bdviajes;
+drop procedure if exists spbolqr;
+create procedure spbolqr(numbol char(6))
+select c.bol_nro,c.nom_pas,c.pago_total,cd.nro_asi,cd.tipo,cd.pago from comprobante as c
+inner join comprobante_detalle as cd on c.bol_nro=cd.bol_nro where c.bol_nro=numbol;
+
+
+call spbolqr('BOL030');

@@ -1,0 +1,93 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #4E7DAE;
+    font-size: 24px;
+    text-transform: uppercase;
+}
+
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    background-color: #4E7DAE;
+    color: #fff;
+}
+
+table tr:nth-child(even) {
+    background-color: #A9D0F5;
+}
+
+a {
+    color: #4E7DAE;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Estilos para los asientos */
+table img {
+    display: inline-block;
+    margin: 5px;
+    max-width: 40px;
+    max-height: 40px;
+    cursor: pointer;
+}
+
+/* Estilos para los asientos ocupados */
+.asiento-ocupado {
+    filter: grayscale(100%);
+    cursor: not-allowed;
+}
+
+/* Estilos para los botones */
+input[type="submit"], input[type="reset"] {
+    background-color: #4E7DAE;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+input[type="submit"]:hover, input[type="reset"]:hover {
+    background-color: #337ab7;
+}
+
+/* Estilos para limitar el ancho de la tabla */
+.table-container {
+    max-width: 800px; /* Ajusta el ancho máximo según tus preferencias */
+    margin: 0 auto; /* Centra el contenedor en la página */
+}
+
+/* Elimina la alternancia de colores en las filas */
+table tr:nth-child(even) {
+    background-color: transparent; /* Cambia el color de fondo a transparente para filas pares */
+}

@@ -1,0 +1,14 @@
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertarComprobante`(
+    IN nroviaje VARCHAR(255),
+    IN nombrePasajero VARCHAR(255),
+    IN pagoxviaje DOUBLE
+)
+BEGIN
+    DECLARE nuevoBOL VARCHAR(10);
+    SET nuevoBOL = CONCAT('BOL', LPAD((SELECT COUNT(*) + 1 FROM comprobante), 3, '0'));
+
+    INSERT INTO comprobante (BOL_NRO, VIA_NRO, Nom_pas, pago_total)
+    VALUES (nuevoBOL, nroviaje, nombrePasajero, pagoxviaje);
+END$$
+DELIMITER ;

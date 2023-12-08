@@ -1,0 +1,79 @@
+/* Estilos para la sección de Misión, Visión y Valores */
+.mission-section {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    padding: 40px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+.nav__link {
+    margin-bottom: 150px;
+}
+
+/* Estilo para títulos de sección */
+.mission-section h2 {
+    color: #3498db; 
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+/* Estilo para párrafos de sección */
+.mission-section p {
+    color: #333;
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+/* Estilo para la lista de valores */
+.mission-section ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.mission-section ul li {
+    color: #333;
+    font-size: 18px; /* Tamaño de fuente ajustado */
+    margin-bottom: 10px;
+}
+
+.mission-section ul li:before {
+    content: "•";
+    color: #5264AE;
+    margin-right: 10px;
+}
+
+/* Estilo para el espacio entre elementos de la lista */
+.mission-section ul li:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+/* Estilo para el pie de página */
+footer {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+/* Estilo para los enlaces de redes sociales */
+.social-media a {
+    text-decoration: none;
+    color: #5264AE;
+    margin: 0 10px;
+    font-size: 20px;
+}
+
+.social-media a:hover {
+    color: #31407A;
+}
